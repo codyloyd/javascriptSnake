@@ -1,0 +1,38 @@
+@import 'https://fonts.googleapis.com/css?family=Cutive+Mono';
+
+$black: #333;
+$dark-grey: #555;
+$grey: #ccb;
+
+body {
+  font-family: "Cutive Mono", monospace;
+  color: $black;
+  * {
+    box-sizing: border-box;
+  }
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-weight: 400;
+}
+
+.gameview {
+  background-color: $grey;
+  border: 1px solid $dark-grey;
+  height: 562px;
+  width: 562px;
+}
+
+.game-grid {
+  display: flex;
+  flex-wrap: wrap;
+  .square {
+    border: 1px solid $dark-grey;
+    display: flex;
+    font-size: 14px;
+    height: 14px;
+    line-height: 14px;
+    text-align: center;
+    width: 14px;
+  }
+}

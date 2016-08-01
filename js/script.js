@@ -66,10 +66,11 @@ function move(grid) {
 }
 
 function gameOverYet() {
-  if ( (snake.currentSnake[0][0] >= 0 && snake.currentSnake[0][0] < 40) && (snake.currentSnake[0][1] >= 0 && snake.currentSnake[0][1] < 40) ) {
-
+  if ( (snake.currentSnake[0][0] >= 0 && snake.currentSnake[0][0] <
+    40) && (snake.currentSnake[0][1] >= 0 && snake.currentSnake[0][1] < 40) ) {
+      return false
   } else {
-    alert("game over")
+    return true
   }
 }
 
@@ -77,6 +78,20 @@ var snake = {
   position: [20,10],
   direction: "r",
   currentSnake: [[20,10],[20,9],[20,8],[20,7]]
+}
+
+function gameLoop(gameGrid){
+  for (var i = 0; i < 100; i++) {
+    setTimeout(function(){
+      move(gameGrid)
+      if (gameOverYet()) {
+        alert("gameover")
+        // break
+      }
+      placeSnake(gameGrid,snake)
+      renderGrid(gameGrid)
+    }, 200*i)
+  }
 }
 
 var gameOver = false
@@ -87,12 +102,5 @@ $(document).ready(function(){
   $("body").keypress(function(input){
     snake.direction = parseKeypress(input)
   })
-  for (var i = 0; i < 100; i++) {
-    setTimeout(function(){
-      move(gameGrid)
-      gameOverYet()
-      placeSnake(gameGrid,snake)
-      renderGrid(gameGrid)
-    }, 200*i)
-  }
+  gameLoop(gameGrid)
 })

@@ -29,6 +29,10 @@ function parseKeypress(input) {
 }
 
 function placeSnake(grid,snake) {
+  //iterate through the snake
+  //set the correct coordinates of the grid
+  //dont forget to clear the old coords
+  // grid[snake.position[0]][snake.position[1]] = "O"
   for (var i = 0; i < snake.currentSnake.length; i++) {
     grid[snake.currentSnake[i][0]][snake.currentSnake[i][1]] = "x"
   }

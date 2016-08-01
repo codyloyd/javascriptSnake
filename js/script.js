@@ -70,13 +70,32 @@ function move(grid) {
   }
 }
 
-function gameOverYet() {
+function snakeIsInBounds() {
   if ( (snake.currentSnake[0][0] >= 0 && snake.currentSnake[0][0] <
     40) && (snake.currentSnake[0][1] >= 0 && snake.currentSnake[0][1] < 40) ) {
+      return true
+  } else {
+    return false
+  }
+}
+
+function snakeNotOverlapping() {
+  for (var i = 1; i < snake.currentSnake.length; i++) {
+    if (JSON.stringify(snake.currentSnake[i]) == JSON.stringify(snake.currentSnake[0])) {
+      return false
+    } else {
+    }
+  }
+  return true
+}
+
+function gameOverYet() {
+  if (snakeIsInBounds() && snakeNotOverlapping()) {
       return false
   } else {
     return true
   }
+
 }
 
 function foodCoords(){

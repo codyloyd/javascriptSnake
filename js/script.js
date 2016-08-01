@@ -28,11 +28,7 @@ function parseKeypress(input) {
   return keypressMap[input.keyCode]
 }
 
-function placeSnake(grid,snake) {
-  //iterate through the snake
-  //set the correct coordinates of the grid
-  //dont forget to clear the old coords
-  // grid[snake.position[0]][snake.position[1]] = "O"
+function placeSnake(grid) {
   for (var i = 0; i < snake.currentSnake.length; i++) {
     grid[snake.currentSnake[i][0]][snake.currentSnake[i][1]] = "x"
   }
@@ -77,24 +73,21 @@ function gameOverYet() {
 var snake = {
   position: [20,10],
   direction: "r",
-  currentSnake: [[20,10],[20,9],[20,8],[20,7]]
+  currentSnake: [[20,10],[20,9],[20,8],[20,7],[20,6],[20,5]]
 }
 
 function gameLoop(gameGrid){
-  for (var i = 0; i < 100; i++) {
-    setTimeout(function(){
-      move(gameGrid)
-      if (gameOverYet()) {
+    setTimeout(function timer(){
+        move(gameGrid)
+      if (!gameOverYet()) {
+        placeSnake(gameGrid)
+        renderGrid(gameGrid)
+        gameLoop(gameGrid)
+      } else {
         alert("gameover")
-        // break
       }
-      placeSnake(gameGrid,snake)
-      renderGrid(gameGrid)
-    }, 200*i)
-  }
+    }, 100)
 }
-
-var gameOver = false
 
 $(document).ready(function(){
   var gameGrid = createGameGrid(40)

@@ -34,9 +34,18 @@ function placeSnake(grid) {
   }
 }
 
+function placeFood(grid) {
+    grid[food.coords[0]][food.coords[1]] = "O"
+}
+
 function moveSnakeInDirection(x,y,grid) {
-  snake.currentSnake.unshift([snake.currentSnake[0][0]+x,snake.currentSnake[0][1]+y])
-  removeSnakeTail(grid)
+  coords = [snake.currentSnake[0][0]+x,snake.currentSnake[0][1]+y]
+  snake.currentSnake.unshift(coords)
+  if (JSON.stringify(food.coords) == JSON.stringify(coords)) {
+    food.coords = foodCoords()
+  } else {
+    removeSnakeTail(grid)
+  }
 }
 
 function removeSnakeTail(grid){
@@ -70,16 +79,28 @@ function gameOverYet() {
   }
 }
 
+function foodCoords(){
+  coords = []
+  coords.push(Math.floor((Math.random() * 40) + 1))
+  coords.push(Math.floor((Math.random() * 40) + 1))
+  return coords
+}
+
 var snake = {
   position: [20,10],
   direction: "r",
   currentSnake: [[20,10],[20,9],[20,8],[20,7],[20,6],[20,5]]
 }
 
+var food = {
+  coords: [20,15]
+}
+
 function gameLoop(gameGrid){
     setTimeout(function timer(){
         move(gameGrid)
       if (!gameOverYet()) {
+        placeFood(gameGrid)
         placeSnake(gameGrid)
         renderGrid(gameGrid)
         gameLoop(gameGrid)

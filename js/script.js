@@ -65,6 +65,14 @@ function move(grid) {
   }
 }
 
+function gameOverYet() {
+  if ( (snake.currentSnake[0][0] >= 0 && snake.currentSnake[0][0] < 40) && (snake.currentSnake[0][1] >= 0 && snake.currentSnake[0][1] < 40) ) {
+
+  } else {
+    alert("game over")
+  }
+}
+
 var snake = {
   position: [20,10],
   direction: "r",
@@ -82,6 +90,7 @@ $(document).ready(function(){
   for (var i = 0; i < 100; i++) {
     setTimeout(function(){
       move(gameGrid)
+      gameOverYet()
       placeSnake(gameGrid,snake)
       renderGrid(gameGrid)
     }, 200*i)

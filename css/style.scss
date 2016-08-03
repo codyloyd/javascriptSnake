@@ -21,6 +21,18 @@ h1,h2,h3,h4,h5,h6 {
   margin-bottom: 5px;
 }
 
+button {
+  background:none;
+  border: 1px $dark-grey solid;
+  padding: 5px 15px 5px 15px;
+  font-size: 24px;
+  border-radius: 2px;
+  &:hover{
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.2);
+-moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.2);
+box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.2);
+  }
+}
 .container {
   position: relative;
   width: 100%;

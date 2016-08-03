@@ -130,6 +130,20 @@ function foodCoords(){
   }
 }
 
+function startGame(gameGrid){
+  snake = {
+     position: [10,10],
+     direction: "r",
+     currentSnake: [[10,10],[10,9],[10,8],[10,7],[10,6],[10,5]]
+  }
+  score = 0
+  speed = 150
+  food = {
+    coords: [10,15]
+  }
+  gameLoop(gameGrid)
+}
+
 function renderScore(){
   $("#score").text(score)
 }
@@ -168,5 +182,7 @@ $(document).ready(function(){
   $("body").keydown(function(input){
     snake.direction = parseKeypress(input)
   })
-  gameLoop(gameGrid)
+  $("button").click(function(){
+    startGame(gameGrid)
+  })
 })

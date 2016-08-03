@@ -1,17 +1,27 @@
+@import "https://fonts.googleapis.com/css?family=Cutive+Mono";
 body {
   font-family: "Cutive Mono", monospace;
-  color: #333; }
+  color: #333;
+  margin-left: 10px;
+  text-align: center; }
   body * {
     box-sizing: border-box; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 400; }
+  font-weight: 400;
+  margin-top: 5px;
+  margin-bottom: 5px; }
+
+.container {
+  position: relative;
+  width: 100%; }
 
 .gameview {
   background-color: #ccb;
   border: 1px solid #555;
   height: 562px;
-  width: 562px; }
+  width: 562px;
+  margin: auto; }
 
 .game-grid {
   display: flex;
@@ -24,5 +34,11 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 14px;
     text-align: center;
     width: 14px; }
+
+.snake {
+  background-color: #333; }
+
+.food {
+  background-color: red; }
 
 /*# sourceMappingURL=style.css.map */

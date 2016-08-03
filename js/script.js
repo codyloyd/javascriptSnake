@@ -18,7 +18,7 @@ function renderGrid(grid) {
   $(".game-grid").empty()
   for (var i = 0; i < grid.length; i++) {
     for (var ii = 0; ii < grid[i].length; ii++) {
-      $(".game-grid").append('<div class="square">'+ grid[i][ii] +'</div>')
+      $(".game-grid").append('<div class="square" id="'+ i +'-'+ ii +'">'+ grid[i][ii] +'</div>')
     }
   }
 }
@@ -30,12 +30,13 @@ function parseKeypress(input) {
 
 function placeSnake(grid) {
   for (var i = 0; i < snake.currentSnake.length; i++) {
-    grid[snake.currentSnake[i][0]][snake.currentSnake[i][1]] = "x"
+    // grid[snake.currentSnake[i][0]][snake.currentSnake[i][1]] = "x"
+    $("#"+snake.currentSnake[i][0]+"-"+snake.currentSnake[i][1]).addClass("snake")
   }
 }
 
 function placeFood(grid) {
-    grid[food.coords[0]][food.coords[1]] = "O"
+    $("#"+food.coords[0]+"-"+food.coords[1]).addClass("food")
 }
 
 function moveSnakeInDirection(x,y,grid) {
@@ -43,6 +44,8 @@ function moveSnakeInDirection(x,y,grid) {
   snake.currentSnake.unshift(coords)
   if (JSON.stringify(food.coords) == JSON.stringify(coords)) {
     food.coords = foodCoords()
+    score += 1
+    console.log(score)
   } else {
     removeSnakeTail(grid)
   }
@@ -100,9 +103,13 @@ function gameOverYet() {
 
 function foodCoords(){
   coords = []
-  coords.push(Math.floor((Math.random() * 40) + 1))
-  coords.push(Math.floor((Math.random() * 40) + 1))
+  coords.push(Math.floor((Math.random() * 40)))
+  coords.push(Math.floor((Math.random() * 40)))
   return coords
+}
+
+function renderScore(){
+  $("#score").text(score)
 }
 
 var snake = {
@@ -115,22 +122,25 @@ var food = {
   coords: [20,15]
 }
 
+var score = 0
+
 function gameLoop(gameGrid){
     setTimeout(function timer(){
         move(gameGrid)
       if (!gameOverYet()) {
+        renderGrid(gameGrid)
         placeFood(gameGrid)
         placeSnake(gameGrid)
-        renderGrid(gameGrid)
+        renderScore()
         gameLoop(gameGrid)
       } else {
         alert("gameover")
       }
-    }, 100)
+    }, 50)
 }
-
 $(document).ready(function(){
-  var gameGrid = createGameGrid(40)
+  var gridSize = 40
+  var gameGrid = createGameGrid(gridSize)
   renderGrid(gameGrid,snake.currentSnake)
   $("body").keypress(function(input){
     snake.direction = parseKeypress(input)

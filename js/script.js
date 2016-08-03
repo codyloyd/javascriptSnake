@@ -43,12 +43,23 @@ function moveSnakeInDirection(x,y,grid) {
   coords = [snake.currentSnake[0][0]+x,snake.currentSnake[0][1]+y]
   snake.currentSnake.unshift(coords)
   if (JSON.stringify(food.coords) == JSON.stringify(coords)) {
-    food.coords = foodCoords()
-    score += 1
-    speed -= 3
-    console.log(score)
+    eatFood()
   } else {
     removeSnakeTail(grid)
+  }
+}
+
+function eatFood() {
+  food.coords = foodCoords()
+  score += 1
+  if (speed > 100) {
+    speed -= 5
+  } else if (speed > 75) {
+    speed -= 3
+  } else if (speed > 50) {
+    speed -= 1
+  } else {
+    
   }
 }
 

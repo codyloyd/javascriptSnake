@@ -64,7 +64,7 @@ function eatFood() {
   } else if (speed > 50) {
     speed -= 1
   } else {
-
+    speed = speed
   }
 }
 

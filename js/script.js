@@ -59,7 +59,7 @@ function eatFood() {
   } else if (speed > 50) {
     speed -= 1
   } else {
-    
+
   }
 }
 
@@ -155,7 +155,7 @@ $(document).ready(function(){
   var gridSize = 20
   var gameGrid = createGameGrid(gridSize)
   renderGrid(gameGrid,snake.currentSnake)
-  $("body").keypress(function(input){
+  $("body").keydown(function(input){
     snake.direction = parseKeypress(input)
   })
   gameLoop(gameGrid)

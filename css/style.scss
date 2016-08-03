@@ -28,8 +28,8 @@ h1,h2,h3,h4,h5,h6 {
 .gameview {
   background-color: $grey;
   border: 1px solid $dark-grey;
-  height: 562px;
-  width: 562px;
+  height: 502px;
+  width: 502px;
   margin:auto;
 }
 
@@ -39,11 +39,9 @@ h1,h2,h3,h4,h5,h6 {
   .square {
     border: 1px solid $dark-grey;
     display: flex;
-    font-size: 14px;
-    height: 14px;
-    line-height: 14px;
+    height: 25px;
     text-align: center;
-    width: 14px;
+    width: 25px;
   }
 }
 

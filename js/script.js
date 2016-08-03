@@ -45,6 +45,7 @@ function moveSnakeInDirection(x,y,grid) {
   if (JSON.stringify(food.coords) == JSON.stringify(coords)) {
     food.coords = foodCoords()
     score += 1
+    speed -= 3
     console.log(score)
   } else {
     removeSnakeTail(grid)
@@ -75,7 +76,7 @@ function move(grid) {
 
 function snakeIsInBounds() {
   if ( (snake.currentSnake[0][0] >= 0 && snake.currentSnake[0][0] <
-    40) && (snake.currentSnake[0][1] >= 0 && snake.currentSnake[0][1] < 40) ) {
+    20) && (snake.currentSnake[0][1] >= 0 && snake.currentSnake[0][1] < 20) ) {
       return true
   } else {
     return false
@@ -103,8 +104,8 @@ function gameOverYet() {
 
 function foodCoords(){
   coords = []
-  coords.push(Math.floor((Math.random() * 40)))
-  coords.push(Math.floor((Math.random() * 40)))
+  coords.push(Math.floor((Math.random() * 20)))
+  coords.push(Math.floor((Math.random() * 20)))
   return coords
 }
 
@@ -113,16 +114,17 @@ function renderScore(){
 }
 
 var snake = {
-  position: [20,10],
+  position: [10,10],
   direction: "r",
-  currentSnake: [[20,10],[20,9],[20,8],[20,7],[20,6],[20,5]]
+  currentSnake: [[10,10],[10,9],[10,8],[10,7],[10,6],[10,5]]
 }
 
 var food = {
-  coords: [20,15]
+  coords: [10,15]
 }
 
 var score = 0
+var speed = 150
 
 function gameLoop(gameGrid){
     setTimeout(function timer(){
@@ -136,10 +138,10 @@ function gameLoop(gameGrid){
       } else {
         alert("gameover")
       }
-    }, 50)
+    }, speed)
 }
 $(document).ready(function(){
-  var gridSize = 40
+  var gridSize = 20
   var gameGrid = createGameGrid(gridSize)
   renderGrid(gameGrid,snake.currentSnake)
   $("body").keypress(function(input){

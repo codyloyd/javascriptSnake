@@ -19,8 +19,8 @@ h1, h2, h3, h4, h5, h6 {
 .gameview {
   background-color: #ccb;
   border: 1px solid #555;
-  height: 562px;
-  width: 562px;
+  height: 502px;
+  width: 502px;
   margin: auto; }
 
 .game-grid {
@@ -29,11 +29,9 @@ h1, h2, h3, h4, h5, h6 {
   .game-grid .square {
     border: 1px solid #555;
     display: flex;
-    font-size: 14px;
-    height: 14px;
-    line-height: 14px;
+    height: 25px;
     text-align: center;
-    width: 14px; }
+    width: 25px; }
 
 .snake {
   background-color: #333; }

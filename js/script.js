@@ -24,13 +24,18 @@ function renderGrid(grid) {
 }
 
 function parseKeypress(input) {
+  var oppositeDirections = { "r":"l","u":"d","d":"u","l":"r"}
   var keypressMap = {37:"l",38:"u",39:"r",40:"d"}
-  return keypressMap[input.keyCode]
+  var keypress = keypressMap[input.keyCode]
+  if (oppositeDirections[keypress] != snake.direction) {
+    return keypress
+  } else {
+    return snake.direction
+  }
 }
 
 function placeSnake(grid) {
   for (var i = 0; i < snake.currentSnake.length; i++) {
-    // grid[snake.currentSnake[i][0]][snake.currentSnake[i][1]] = "x"
     $("#"+snake.currentSnake[i][0]+"-"+snake.currentSnake[i][1]).addClass("snake")
   }
 }
@@ -68,6 +73,7 @@ function removeSnakeTail(grid){
   grid[tail[0]][tail[1]] = " "
 }
 
+
 function move(grid) {
   switch(snake.direction){
     case "r":
@@ -94,9 +100,9 @@ function snakeIsInBounds() {
   }
 }
 
-function snakeNotOverlapping() {
+function notOverlappingSnake(coord) {
   for (var i = 1; i < snake.currentSnake.length; i++) {
-    if (JSON.stringify(snake.currentSnake[i]) == JSON.stringify(snake.currentSnake[0])) {
+    if (JSON.stringify(snake.currentSnake[i]) == JSON.stringify(coord)) {
       return false
     } else {
     }
@@ -105,7 +111,7 @@ function snakeNotOverlapping() {
 }
 
 function gameOverYet() {
-  if (snakeIsInBounds() && snakeNotOverlapping()) {
+  if (snakeIsInBounds() && notOverlappingSnake(snake.currentSnake[0])) {
       return false
   } else {
     return true
@@ -117,7 +123,11 @@ function foodCoords(){
   coords = []
   coords.push(Math.floor((Math.random() * 20)))
   coords.push(Math.floor((Math.random() * 20)))
-  return coords
+  if (notOverlappingSnake(coords)){
+    return coords
+  } else {
+    foodCoords()
+  }
 }
 
 function renderScore(){

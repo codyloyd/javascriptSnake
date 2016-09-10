@@ -123,11 +123,13 @@ function foodCoords(){
   coords = []
   coords.push(Math.floor((Math.random() * 20)))
   coords.push(Math.floor((Math.random() * 20)))
-  if (notOverlappingSnake(coords)){
+  // if (notOverlappingSnake(coords)){
     return coords
-  } else {
-    foodCoords()
-  }
+  // } else {
+    // coords = []
+    // coords.push(Math.floor((Math.random() * 20)))
+    // coords.push(Math.floor((Math.random() * 20)))
+  // }
 }
 
 function startGame(gameGrid){
